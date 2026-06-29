@@ -1,10 +1,7 @@
-import {operate} from './operators.js'; // TO BE CREATED BY JOÃO
+import { render } from "./display.js";
+import {operate} from './operators.js';
 
 import {
-  addition,
-  subtraction,
-  multiplication,
-  division,
   decimal,
   equals as EQUALS_INPUT,
   isOperation,
@@ -12,21 +9,12 @@ import {
   isDeleteLastInput,
 } from './validOperations.js';
 
-const DISPLAY_ELEMENT_ID = 'display';
-const MAX_DISPLAY_DIGITS = 10;
-const DIVIDE_BY_ZERO_MESSAGE = "Dividing by zero would tear a hole in reality. Try again.";
-const OPERATOR_SYMBOLS = {
-  [addition]: '+',
-  [subtraction]: '−',
-  [multiplication]: '×',
-  [division]: '÷',
-};
-
 let currentValue = '0';
 let firstNumber = null;
 let operator = null;
 let waitingForSecondNumber = false;
 let hasError = false;
+let errorCode = null;
 
 export function getCurrentValue() {
   return currentValue;
@@ -50,7 +38,7 @@ export function inputDigit(digit) {
   }
 
   waitingForSecondNumber = false;
-  render();
+  render(getCalculatorState());
 }
 
 export function inputDecimal() {
@@ -59,13 +47,13 @@ export function inputDecimal() {
   if (waitingForSecondNumber) {
     currentValue = '0.';
     waitingForSecondNumber = false;
-    render();
+    render(getCalculatorState());
     return;
   }
 
   if (!hasDecimal()) {
     currentValue += '.';
-    render();
+    render(getCalculatorState());
   }
 }
 
@@ -76,7 +64,7 @@ export function backspace() {
   }
   if (waitingForSecondNumber) return;
   currentValue = currentValue.length > 1 ? currentValue.slice(0, -1) : '0';
-  render();
+  render(getCalculatorState());
 }
 
 export function clear() {
@@ -85,14 +73,9 @@ export function clear() {
   operator = null;
   waitingForSecondNumber = false;
   hasError = false;
-  render();
-}
-
-function roundForDisplay(value) {
-  const cleaned = Math.round((value + Number.EPSILON) * 1e2) / 1e2;
-  const digitCount = cleaned.toString().replace('-', '').replace('.', '').length;
-  if (digitCount <= MAX_DISPLAY_DIGITS) return cleaned.toString();
-  return Number(cleaned.toPrecision(MAX_DISPLAY_DIGITS)).toString();
+  errorCode = null;
+  
+  render(getCalculatorState());
 }
 
 function evaluatePendingOperation() {
@@ -101,13 +84,15 @@ function evaluatePendingOperation() {
 
   if (!Number.isFinite(result)) {
     hasError = true;
-    currentValue = DIVIDE_BY_ZERO_MESSAGE;
-    render();
+    errorCode = "DIVIDE_BY_ZERO";
     return null;
   }
 
-  currentValue = roundForDisplay(result);
-  return parseFloat(currentValue);
+  currentValue = result.toString();
+  hasError = false;
+  errorCode = null;
+
+  return result;
 }
 
 export function chooseOperator(nextOperator) {
@@ -123,7 +108,7 @@ export function chooseOperator(nextOperator) {
 
   operator = nextOperator;
   waitingForSecondNumber = true;
-  render();
+  render(getCalculatorState());
 }
 
 export function equals() {
@@ -141,7 +126,7 @@ export function equals() {
   firstNumber = result;
   operator = null;
   waitingForSecondNumber = true;
-  render();
+  render(getCalculatorState());
 }
 
 export function processCalculatorInput(calculatorValueString) {
@@ -153,20 +138,13 @@ export function processCalculatorInput(calculatorValueString) {
   return inputDigit(calculatorValueString);
 }
 
-function buildDisplayText() {
-  if (hasError || operator === null) return currentValue;
-  const symbol = OPERATOR_SYMBOLS[operator] ?? operator;
-  const firstPart = roundForDisplay(firstNumber);
-  return waitingForSecondNumber ? `${firstPart} ${symbol}` : `${firstPart} ${symbol} ${currentValue}`;
-}
-
-function render() {
-  const displayElement = document.getElementById(DISPLAY_ELEMENT_ID);
-  if (!displayElement) return;
-  const text = buildDisplayText();
-  if ('value' in displayElement) {
-    displayElement.value = text;
-  } else {
-    displayElement.textContent = text;
-  }
+export function getCalculatorState() {
+  return {
+    currentValue,
+    firstNumber,
+    operator,
+    waitingForSecondNumber,
+    hasError,
+    errorCode,
+  };
 }
