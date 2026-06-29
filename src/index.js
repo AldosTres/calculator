@@ -2,6 +2,7 @@ import { createCalculatorButton } from './calculatorButton.js';
 import {
   addition,
   clear,
+  deleteLastInput,
   division,
   multiplication,
   subtraction,
@@ -21,6 +22,9 @@ mainBody.appendChild(createCalculatorButton(subtraction, handleButtonClick));
 mainBody.appendChild(createCalculatorButton(multiplication, handleButtonClick));
 mainBody.appendChild(createCalculatorButton(division, handleButtonClick));
 mainBody.appendChild(createCalculatorButton(clear, handleButtonClick));
+mainBody.appendChild(
+  createCalculatorButton(deleteLastInput, handleButtonClick),
+);
 
 mainBody.appendChild(createCalculatorButton('=', handleButtonClick));
 // ========        END DELETE     =========

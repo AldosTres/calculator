@@ -1,9 +1,11 @@
-import { isOperation, isClear } from './validOperations.js';
+import { isOperation, isClear, isDeleteLastInput } from './validOperations.js';
 
 export function createCalculatorButton(calculatorValueString, onClick) {
   const button = document.createElement('button');
-  button.textContent = calculatorValueString;
   button.classList.add('calculator-button');
+  button.textContent = isDeleteLastInput(calculatorValueString)
+    ? '⌫'
+    : calculatorValueString;
 
   const isOperationButton = isOperation(calculatorValueString);
 
