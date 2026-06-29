@@ -7,9 +7,8 @@ export function createCalculatorButton(calculatorValueString, onClick) {
     ? '⌫'
     : calculatorValueString;
 
-  const isOperationButton = isOperation(calculatorValueString);
-
-  if (isOperationButton) button.classList.add('calculator-button--operation');
+  if (isOperation(calculatorValueString))
+    button.classList.add('calculator-button--operation');
 
   if (isClear(calculatorValueString))
     button.classList.add('calculator-button--clear');
