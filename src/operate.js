@@ -16,6 +16,8 @@ function operate(value1, operator, value2)
         case division:
             return divide(value1, value2);
             break;
+        default:
+            break;
     }
 }
 
