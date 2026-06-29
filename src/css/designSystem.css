@@ -1,0 +1,17 @@
+:root {
+  --color-background: #0f172a;
+
+  --color-button: #1f2937;
+  --color-button-hover: #334155;
+
+  --color-text: #f8fafc;
+
+  --color-operator: #f59e0b;
+  --color-operator-hover: #fbbf24;
+
+  --color-danger: #ef4444;
+  --color-danger-hover: #f87171;
+
+  --text-size-display: 2.5rem;
+  --text-size-button: 1.25rem;
+}
