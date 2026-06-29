@@ -13,7 +13,7 @@ import {
 } from './validOperations.js';
 
 const DISPLAY_ELEMENT_ID = 'display';
-const MAX_DISPLAY_DIGITS = 2;
+const MAX_DISPLAY_DIGITS = 10;
 const DIVIDE_BY_ZERO_MESSAGE = "Dividing by zero would tear a hole in reality. Try again.";
 const OPERATOR_SYMBOLS = {
   [addition]: '+',
