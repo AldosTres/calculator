@@ -1,0 +1,44 @@
+.calculator-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 2rem;
+
+  font-size: var(--text-size-button);
+
+  background-color: var(--color-button);
+  color: var(--color-text);
+
+  border: 1px solid var(--color-button-hover);
+  border-radius: 0.7rem;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.3s ease,
+    transform 0.1s ease;
+}
+.calculator-button:hover {
+  background-color: var(--color-button-hover);
+}
+.calculator-button:active {
+  background-color: var(--color-button-hover);
+  transform: scale(0.97);
+}
+
+.calculator-button--operation {
+  background-color: var(--color-operator);
+  border-color: var(--color-operator-hover);
+}
+.calculator-button--operation:hover {
+  background-color: var(--color-operator-hover);
+}
+
+.calculator-button--clear {
+  background-color: var(--color-danger);
+  border-color: var(--color-danger-hover);
+}
+.calculator-button--clear:hover {
+  background-color: var(--color-danger-hover);
+}
