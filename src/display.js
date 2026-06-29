@@ -43,6 +43,10 @@ function render(state) {
     console.log("Display has not been initialized.");
     return;
   }
+  if (state.hasError) {
+    showError(state.errorCode);
+    return;
+  }
 
   const text = buildDisplayText(state);
   updateDisplay(text);
