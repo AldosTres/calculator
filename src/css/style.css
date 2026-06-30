@@ -44,6 +44,17 @@
 .calculator {
   display: flex;
   flex-direction: column;
+  gap: 2rem;
+
+  background-color: var(--color-calculator);
+  padding: 2rem;
+
+  max-width: 70rem;
+
+  border: 2px solid var(--color-button-hover);
+  border-radius: 2.2rem;
+
+  box-shadow: 0 1rem 4rem rgba(0, 0, 0, 0.3);
 }
 .calculator__buttons-container {
   display: grid;
