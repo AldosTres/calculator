@@ -20,7 +20,8 @@
 .calculator-button:hover {
   background-color: var(--color-button-hover);
 }
-.calculator-button:active {
+.calculator-button:active,
+.calculator-button.is-keyboard-pressed {
   background-color: var(--color-button-hover);
   transform: scale(0.97);
 }
@@ -29,7 +30,8 @@
   background-color: var(--color-operator);
   border-color: var(--color-operator-hover);
 }
-.calculator-button--operation:hover {
+.calculator-button--operation:hover,
+.calculator-button--operation.is-keyboard-pressed {
   background-color: var(--color-operator-hover);
 }
 
@@ -37,7 +39,8 @@
   background-color: var(--color-danger);
   border-color: var(--color-danger-hover);
 }
-.calculator-button--clear:hover {
+.calculator-button--clear:hover,
+.calculator-button--clear.is-keyboard-pressed {
   background-color: var(--color-danger-hover);
 }
 

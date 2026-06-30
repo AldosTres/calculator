@@ -11,7 +11,10 @@ export function createCalculatorButton(
   extraClasses = [],
 ) {
   const button = document.createElement('button');
+
   button.classList.add('calculator-button');
+  button.setAttribute('id', calculatorValueString);
+
   button.textContent = isDeleteLastInput(calculatorValueString)
     ? '⌫'
     : OPERATOR_SYMBOLS[calculatorValueString] || calculatorValueString;

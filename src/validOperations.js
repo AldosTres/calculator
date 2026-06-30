@@ -37,6 +37,7 @@ export function mapToValidInput(value) {
   if (value === 'Backspace') return deleteLastInput;
   if (value === 'Delete') return deleteLastInput;
   if (value === 'c') return clear;
+  if (value === 'a') return clear;
 
   return null;
 }
