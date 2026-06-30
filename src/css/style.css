@@ -66,6 +66,13 @@
   gap: 1rem;
 }
 
+.calculator_display{
+  border: 2px solid var(--color-button-hover);
+  border-radius: 2.2rem;
+  text-align: end;
+  font-size: 5rem;
+}
+
 .span-2-columns {
   grid-column: span 2;
 }

@@ -1,6 +1,6 @@
 import { createCalculatorButton } from './calculatorButton.js';
 import { processCalculatorInput } from './calculator.js';
-
+import { setDisplay } from './display.js';
 import {
   addition,
   clear,
@@ -20,12 +20,15 @@ export function createCalculatorUI() {
 
   calculatorContainer.classList.add('calculator');
   buttonsContainer.classList.add('calculator__buttons-container');
-
+  displayContainer.classList.add('calculator_display')
   // Display
   // TODO IMPORTANT: import actual display once it is implemented
   const display = document.createElement('span');
-  display.textContent = 'DISPLAY HERE';
+  display.textContent = '0';
+  setDisplay(display);
   displayContainer.appendChild(display);
+
+  
 
   // Buttons
   calculatorContainer.appendChild(displayContainer);
