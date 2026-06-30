@@ -83,6 +83,7 @@ function evaluatePendingOperation() {
   const result = operate(firstNumber, operator, secondNumber);
 
   if (!Number.isFinite(result)) {
+    console.log("Divide by zero error");
     hasError = true;
     errorCode = 'DIVIDE_BY_ZERO';
     return null;
@@ -100,12 +101,10 @@ export function chooseOperator(nextOperator) {
 
   if (operator !== null && !waitingForSecondNumber) {
     const result = evaluatePendingOperation();
-    if (result === null) return;
     firstNumber = result;
   } else {
     firstNumber = parseFloat(currentValue);
   }
-
   operator = nextOperator;
   waitingForSecondNumber = true;
   render(getCalculatorState());
@@ -120,8 +119,6 @@ export function equals() {
   if (operator === null || waitingForSecondNumber) return;
 
   const result = evaluatePendingOperation();
-
-  if (result === null) return;
 
   firstNumber = result;
   operator = null;
