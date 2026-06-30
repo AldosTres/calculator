@@ -1,5 +1,6 @@
 import { processCalculatorInput } from './calculator.js';
 import { createCalculatorUI } from './calculatorUI.js';
+import { mapToValidInput } from './validOperations.js';
 
 document.addEventListener('keydown', handleKeyboardInput);
 
