@@ -17,9 +17,11 @@ html {
   /* 1rem = 10px */
   font-size: 62.5%;
 
+  /* 
   @media (max-width: 900px) {
     font-size: 56.25%;
   }
+  */
 }
 
 body {
@@ -29,4 +31,6 @@ body {
 
   font-size: var(--size-normal);
   color: var(--color-text);
+
+  background-color: var(--color-background);
 }
