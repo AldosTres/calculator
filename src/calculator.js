@@ -1,5 +1,5 @@
-import { render } from "./display.js";
-import {operate} from './operators.js';
+import { render } from './display.js';
+import { operate } from './operate.js';
 
 import {
   decimal,
@@ -31,7 +31,7 @@ export function hasDecimal() {
 export function inputDigit(digit) {
   if (hasError) clear();
 
-  if (waitingForSecondNumber || currentValue === "0") {
+  if (waitingForSecondNumber || currentValue === '0') {
     currentValue = digit;
   } else {
     currentValue += digit;
@@ -74,7 +74,7 @@ export function clear() {
   waitingForSecondNumber = false;
   hasError = false;
   errorCode = null;
-  
+
   render(getCalculatorState());
 }
 
@@ -84,7 +84,7 @@ function evaluatePendingOperation() {
 
   if (!Number.isFinite(result)) {
     hasError = true;
-    errorCode = "DIVIDE_BY_ZERO";
+    errorCode = 'DIVIDE_BY_ZERO';
     return null;
   }
 
@@ -116,11 +116,11 @@ export function equals() {
     clear();
     return;
   }
-  
+
   if (operator === null || waitingForSecondNumber) return;
 
   const result = evaluatePendingOperation();
-  
+
   if (result === null) return;
 
   firstNumber = result;
@@ -134,7 +134,9 @@ export function processCalculatorInput(calculatorValueString) {
   if (isClear(calculatorValueString)) return clear();
   if (calculatorValueString === decimal) return inputDecimal();
   if (calculatorValueString === EQUALS_INPUT) return equals();
-  if (isOperation(calculatorValueString)) return chooseOperator(calculatorValueString);
+  if (isOperation(calculatorValueString))
+    return chooseOperator(calculatorValueString);
+
   return inputDigit(calculatorValueString);
 }
 
