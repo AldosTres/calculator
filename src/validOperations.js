@@ -22,6 +22,13 @@ const validCalculatorInputs = [
   equals,
 ];
 
+export const OPERATOR_SYMBOLS = {
+  [addition]: '+',
+  [subtraction]: '-',
+  [multiplication]: '×',
+  [division]: '÷',
+};
+
 export function mapToValidInput(value) {
   if (validCalculatorInputs.includes(value)) return value;
 

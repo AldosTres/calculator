@@ -17,8 +17,16 @@ html {
   /* 1rem = 10px */
   font-size: 62.5%;
 
-  @media (max-width: 900px) {
+  @media (max-width: 603px) {
     font-size: 56.25%;
+  }
+
+  @media (max-width: 432px) {
+    font-size: 50%;
+  }
+
+  @media (max-width: 342px) {
+    font-size: 43.75%;
   }
 }
 
@@ -29,4 +37,11 @@ body {
 
   font-size: var(--size-normal);
   color: var(--color-text);
+
+  background-color: var(--color-background);
+}
+
+::selection {
+  background: var(--color-operator);
+  color: var(--color-calculator);
 }

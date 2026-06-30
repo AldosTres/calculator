@@ -1,11 +1,22 @@
-import { isOperation, isClear, isDeleteLastInput } from './validOperations.js';
+import {
+  isOperation,
+  isClear,
+  isDeleteLastInput,
+  OPERATOR_SYMBOLS,
+} from './validOperations.js';
 
-export function createCalculatorButton(calculatorValueString, onClick) {
+export function createCalculatorButton(
+  calculatorValueString,
+  onClick,
+  extraClasses = [],
+) {
   const button = document.createElement('button');
   button.classList.add('calculator-button');
   button.textContent = isDeleteLastInput(calculatorValueString)
     ? '⌫'
-    : calculatorValueString;
+    : OPERATOR_SYMBOLS[calculatorValueString] || calculatorValueString;
+
+  extraClasses.forEach((className) => button.classList.add(className));
 
   if (isOperation(calculatorValueString))
     button.classList.add('calculator-button--operation');

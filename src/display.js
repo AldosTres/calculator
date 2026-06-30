@@ -3,35 +3,29 @@ import {
   subtraction,
   multiplication,
   division,
-} from "./validOperations.js";
+  OPERATOR_SYMBOLS,
+} from './validOperations.js';
 let display = null;
 
 const MAX_DECIMALS = 2;
 const MAX_DISPLAY_DIGITS = 10;
 
-const OPERATOR_SYMBOLS = {
-  [addition]: "+",
-  [subtraction]: "-",
-  [multiplication]: "×",
-  [division]: "÷",
-};
-
 const ERROR_MESSAGES = {
   DIVIDE_BY_ZERO: [
-    "Nice try 😏",
-    "Math says no.",
-    "Zero? Really?",
+    'Nice try 😏',
+    'Math says no.',
+    'Zero? Really?',
     "Can't do that.",
-    "∞ Not today.",
-    "Zero? Nope.",
-    "∞ Error",
+    '∞ Not today.',
+    'Zero? Nope.',
+    '∞ Error',
     "Can't divide by 0.",
   ],
 };
 
 function setDisplay(element) {
   if (!(element instanceof HTMLElement)) {
-    console.log("Invalid display element.");
+    console.log('Invalid display element.');
     return;
   }
 
@@ -40,7 +34,7 @@ function setDisplay(element) {
 
 function render(state) {
   if (!display) {
-    console.log("Display has not been initialized.");
+    console.log('Display has not been initialized.');
     return;
   }
   if (state.hasError) {
@@ -54,14 +48,14 @@ function render(state) {
 
 function updateDisplay(text) {
   if (!display) {
-    console.log("Display has not been initialized.");
+    console.log('Display has not been initialized.');
     return;
   }
   display.textContent = text;
 }
 
 function clearDisplay() {
-  updateDisplay("0");
+  updateDisplay('0');
 }
 
 function showError(errorCode) {
@@ -93,8 +87,8 @@ function formatDisplayValue(value) {
 
   const digitCount = cleaned
     .toString()
-    .replace("-", "")
-    .replace(".", "").length;
+    .replace('-', '')
+    .replace('.', '').length;
 
   if (digitCount <= MAX_DISPLAY_DIGITS) {
     return cleaned.toString();
